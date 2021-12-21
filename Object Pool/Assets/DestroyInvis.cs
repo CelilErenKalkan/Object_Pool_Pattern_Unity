@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class DestroyInvis : MonoBehaviour
@@ -18,7 +19,8 @@ public class DestroyInvis : MonoBehaviour
             player.GetComponent<Drive>().healthbar.value -= 10;
             if (player.GetComponent<Drive>().healthbar.value <= 0)
             {
-                Destroy(player);
+                Destroy(player.GetComponent<Drive>().healthbar, 0.1f);
+                Destroy(player, 0.1f);
             }
         }
     }
