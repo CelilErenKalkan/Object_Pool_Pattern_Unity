@@ -9,4 +9,17 @@ public class DestroyInvis : MonoBehaviour
         //Destroy(this.gameObject);
         this.gameObject.SetActive(false);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (this.gameObject.CompareTag("asteroid") && collision.gameObject.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
+            player.GetComponent<Drive>().healthbar.value -= 10;
+            if (player.GetComponent<Drive>().healthbar.value <= 0)
+            {
+                Destroy(player);
+            }
+        }
+    }
 }
